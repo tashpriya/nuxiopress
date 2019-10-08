@@ -1,8 +1,8 @@
 {
-  "name": "nuxiopress",
+  "name": "{{ name }}",
   "version": "1.0.0",
-  "description": "A Nuxt PWA starter template with Encrypted Cookies, Express.js, Axios, Vue Router, Vuex, Passport.js.",
-  "author": "RightBrainTechBD <www.jbc.bd@gmail.com>",
+  "description": "{{ description }}",
+  "author": "{{ author }}",
   "private": true,
   "dependencies": {
     "@nuxtjs/auth": "^4.8.4",
