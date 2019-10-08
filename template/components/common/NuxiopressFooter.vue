@@ -1,16 +1,16 @@
 <template>
-    <footer class="nuxiopress-footer" id="NuxiopressFooter" ref="nuxiopressFooter">
-
-    </footer>
+  <footer
+    id="NuxiopressFooter"
+    ref="nuxiopressFooter"
+    class="nuxiopress-footer"
+  ></footer>
 </template>
 
 <script>
-    export default {
-      name: 'nuxiopress-footer',
-      data () {
-        return {
-
-        }
-      }
-    }
+export default {
+  name: 'NuxiopressFooter',
+  data() {
+    return {};
+  }
+};
 </script>

@@ -1,16 +1,16 @@
 <template>
-    <header class="nuxiopress-header" id="NuxiopressHeader" ref="nuxiopressHeader">
-
-    </header>
+  <header
+    id="NuxiopressHeader"
+    ref="nuxiopressHeader"
+    class="nuxiopress-header"
+  ></header>
 </template>
 
 <script>
-    export default {
-      name: 'nuxiopress-header',
-      data () {
-        return {
-
-        }
-      }
-    }
+export default {
+  name: 'NuxiopressHeader',
+  data() {
+    return {};
+  }
+};
 </script>

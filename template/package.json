@@ -1,8 +1,8 @@
 {
-  "name": "{{ name }}",
+  "name": "nuxiopress",
   "version": "1.0.0",
-  "description": "{{ description }}",
-  "author": "{{ author }}",
+  "description": "A Nuxt PWA starter template with Encrypted Cookies, Express.js, Axios, Vue Router, Vuex, Passport.js.",
+  "author": "RightBrainTechBD <www.jbc.bd@gmail.com>",
   "private": true,
   "dependencies": {
     "@nuxtjs/auth": "^4.8.4",
@@ -34,12 +34,12 @@
     "@nuxtjs/router": "^1.5.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.5.1",
-    "eslint-config-standard": "^14.1.0",
+    "eslint-config-prettier": "^6.4.0",
     "eslint-loader": "^3.0.2",
-    "eslint-plugin-html": "^6.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^5.2.3",
     "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
     "sass-loader": "^8.0.0",
     "webpack": "^4.41.0"
   }

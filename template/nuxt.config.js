@@ -1,20 +1,20 @@
-require('dotenv').config()
-import webpack from 'webpack'
+require('dotenv').config();
+import webpack from 'webpack';
 
 // nuxt configurations
-import head from './config/head'
-import manifest from './config/manifest'
+import head from './config/head';
+import manifest from './config/manifest';
 
 module.exports = {
   /*
-  ** Server configuration
-  */
+   ** Server configuration
+   */
   server: {
     port: 3000
   },
   /*
-  ** Modules
-  */
+   ** Modules
+   */
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
@@ -24,20 +24,16 @@ module.exports = {
     // '@nuxtjs/sitemap'
   ],
   /*
-  ** Modules
-  */
-  buildModules: [
-    '@nuxtjs/router'
-  ],
+   ** Modules
+   */
+  buildModules: ['@nuxtjs/router'],
   /*
-  ** Plugins
-  */
-  plugins: [
-    { src: '~/plugins/bootstrap', ssr: false }
-  ],
+   ** Plugins
+   */
+  plugins: [{ src: '~/plugins/bootstrap', ssr: false }],
   /*
-  ** Router configuration
-  */
+   ** Router configuration
+   */
   router: {
     middleware: []
   },
@@ -50,40 +46,38 @@ module.exports = {
   }, */
 
   /*
-  ** Server middleware
-  */
+   ** Server middleware
+   */
   serverMiddleware: [],
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     extractCSS: true,
     plugins: [
       new webpack.ProvidePlugin({
-        '$': 'jquery',
-        'jQuery': 'jquery',
+        $: 'jquery',
+        jQuery: 'jquery',
         'window.jQuery': 'jquery',
-        '_': 'lodash'
+        _: 'lodash'
       })
     ]
   },
   /*
-  ** Server middleware
-  */
-  css: [
-
-  ],
+   ** Server middleware
+   */
+  css: [],
   /*
-  ** Headers
-  ** Common headers are already provided by @nuxtjs/pwa preset
-  */
+   ** Headers
+   ** Common headers are already provided by @nuxtjs/pwa preset
+   */
   head: head,
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#41B883' },
   /*
-  ** Customize app manifest
-  */
+   ** Customize app manifest
+   */
   manifest: manifest
-}
+};
