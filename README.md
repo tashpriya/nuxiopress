@@ -21,7 +21,7 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli).
 - Create the project. 
 
 ``` bash
-$ vue init RightBrainTechBD/nuxiopress
+$ vue init RightBrainTechBD/nuxiopress <my-project>
 ```
 
 - Go to the location you have created your project
