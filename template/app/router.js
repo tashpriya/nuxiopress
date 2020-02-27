@@ -46,7 +46,6 @@ const isDefaultLocale = localeCode => localeCode === i18nConfig.defaultLocale;
  *
  * @param route
  * @param locale
- * @returns {{path: string, name: *}}
  */
 const createLocalizedRoute = (route, locale) => {
   let routeName = `${route.name}___${locale.code}`;
