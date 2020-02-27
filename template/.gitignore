@@ -5,7 +5,7 @@ node_modules
 *.log
 
 # Nuxt build
-.nuxt
+.nuxiopress-dist
 
 # Nuxt generate
 dist

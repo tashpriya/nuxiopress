@@ -1,83 +1,74 @@
 require('dotenv').config();
 import webpack from 'webpack';
+const merge = require('deepmerge');
 
-// nuxt configurations
-import head from './config/head';
-import manifest from './config/manifest';
+const baseConfig = require('./nuxiopress/base.config');
+const nuxiopressConfig = require('./app/nuxiopress.config');
 
-module.exports = {
-  /*
-   ** Server configuration
-   */
-  server: {
-    port: 3000
-  },
-  /*
-   ** Modules
-   */
-  modules: [
-    '@nuxtjs/pwa',
-    '@nuxtjs/axios',
-    '@nuxtjs/dotenv',
-    'nuxt-user-agent',
-    'bootstrap-vue/nuxt'
-    // '@nuxtjs/sitemap'
-  ],
-  /*
-   ** Modules
-   */
-  buildModules: ['@nuxtjs/router'],
-  /*
-   ** Plugins
-   */
-  plugins: [{ src: '~/plugins/bootstrap', ssr: false }],
-  /*
-   ** Router configuration
-   */
-  router: {
-    middleware: []
-  },
+const nuxt = merge(baseConfig, nuxiopressConfig, {
+  arrayMerge: (target, source, options) => {
+    const destination = target.slice();
 
-  // Uncomment "generate" section, If you are using SPA mode
-  /* generate: {
-    routes: [
-      '/'
-    ]
-  }, */
+    source.forEach((item, index) => {
+      if (typeof destination[index] === 'undefined') {
+        destination[index] = options.cloneUnlessOtherwiseSpecified(
+          item,
+          options
+        );
+      } else if (options.isMergeableObject(item)) {
+        destination[index] = merge(target[index], item, options);
+      } else if (target.indexOf(item) === -1) {
+        destination.push(item);
+      }
+    });
+    return destination;
+  }
+});
 
-  /*
-   ** Server middleware
-   */
-  serverMiddleware: [],
-  /*
-   ** Build configuration
-   */
-  build: {
-    extractCSS: true,
+/*
+ ** Build configuration
+ */
+nuxt.build = {
+  crossorigin: 'anonymous',
+  publicPath: '/_nuxiopress/',
+  extractCSS: true,
+  babel: {
     plugins: [
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
-        _: 'lodash'
-      })
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
+      ['@babel/plugin-proposal-class-properties', { loose: true }]
     ]
   },
-  /*
-   ** Server middleware
-   */
-  css: [],
-  /*
-   ** Headers
-   ** Common headers are already provided by @nuxtjs/pwa preset
-   */
-  head: head,
-  /*
-   ** Customize the progress-bar color
-   */
-  loading: { color: '#41B883' },
-  /*
-   ** Customize app manifest
-   */
-  manifest: manifest
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      _: 'lodash',
+      Popper: 'popper.js'
+    })
+  ],
+  transpile: ['vee-validate'],
+  // vendor: ['jquery', 'bootstrap', 'popper.js', 'daemonite-material'],
+  extend(config, ctx) {
+    if (ctx.isDev) {
+      config.devtool = ctx.isClient ? 'eval-source-map' : 'inline-source-map';
+    }
+    // Run ESLint on save
+    if (ctx.isDev && ctx.isClient) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/
+      });
+    }
+    config.node = {
+      fs: 'empty'
+    };
+  },
+  filenames: {
+    chunk: ({ isDev }) => (isDev ? '[name].js' : '[id].[chunkhash].js')
+  }
 };
+
+module.exports = nuxt;
