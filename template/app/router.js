@@ -40,12 +40,10 @@ const baseRoutes = [
  */
 const isDefaultLocale = localeCode => localeCode === i18nConfig.defaultLocale;
 
-/**
+/*
  * Generate a localized route for a generic, non-localized route.
  * Handles route children recursively.
  *
- * @param route
- * @param locale
  */
 const createLocalizedRoute = (route, locale) => {
   let routeName = `${route.name}___${locale.code}`;
@@ -66,12 +64,9 @@ const createLocalizedRoute = (route, locale) => {
   }
   return localizedRoute;
 };
-/**
+/*
  * Generate all localized routes.
  *
- * @param routes
- * @param locales
- * @returns {*}
  */
 const createLocalizedRoutes = (routes, locales) => {
   return routes.reduce((i18nRoutes, route) => {
